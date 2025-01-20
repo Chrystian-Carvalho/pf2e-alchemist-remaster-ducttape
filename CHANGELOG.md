@@ -1,8 +1,15 @@
 # Changelog
 
+## [2.5.14] - 
+### Fixed
+- **Formula Search:** Fixed Formula Search bar not showing on Crafting tab due to change in character sheet html in pf2e Release v6.8.2.
+### Added
+- **Level Up:** Added ability to add homebrew item compendiums in settings. 
+
+
 ## [2.5.13] - 2025-01-17
 ### Fixed
-- **Level Up:** ([Issue #15](https://github.com/thejoester/pf2e-alchemist-remaster-ducttape/issues/15) When adding and removing formulas on level up, module does so by slug not by name. This should resolve any issues for different languages. 
+- **Level Up:** ([Issue #15](https://github.com/thejoester/pf2e-alchemist-remaster-ducttape/issues/15)) When adding and removing formulas on level up, module does so by slug not by name. This should resolve any issues for different languages. 
 ### Added
 - **Vial Search:** Added setting to enable/disable chat message when alchemist has max vials already. Default to disabled. 
 - **Level Up:** Added setting how to handle removing lower level formulas:
