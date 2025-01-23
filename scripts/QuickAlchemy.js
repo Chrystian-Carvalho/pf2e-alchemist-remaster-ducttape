@@ -549,7 +549,7 @@ Hooks.on("ready", () => {
 		// Check if the item already exists in the actor's inventory
 		const existingItem = selectedActor.items.find(item => 
 			item.slug === healingSlug && 
-			item.system.ductTaped = true &&
+			item.system.ductTaped === true
 		);
 
 		if (existingItem) {
@@ -587,7 +587,7 @@ Hooks.on("ready", () => {
 				modifiedItem.system.ductTaped = true; 
 				modifiedItem.system.publication.authors = "TheJoester";
 				modifiedItem.system.publication.license = "ORC";
-				modifiedItem.system.publication.title = "PF2e Alchemist Remaster Duct Tape 
+				modifiedItem.system.publication.title = "PF2e Alchemist Remaster Duct Tape"; 
 
 				// Adjust Quick Vial Level
 				const actorLevel = selectedActor.system.details.level.value;
@@ -644,7 +644,7 @@ Hooks.on("ready", () => {
 		
 		// Check if the item exists in inventory, has an asterisk, and is infused
 		const itemExists = selectedActor.items.find((item) => 
-			item.system.ductTaped = true &&
+			item.system.ductTaped === true &&
 			item.name.endsWith(`(${selectedType})(*Temporary)`) && 
 			item.system.traits?.value?.includes("infused")
 		);
@@ -748,7 +748,8 @@ Hooks.on("ready", () => {
 
 		// Check if the item exists in inventory, has an asterisk, and is infused
 		const itemExists = selectedActor.items.find((item) => 
-			item.system.ductTaped = true &&
+			item.slug === selectedItem?.slug &&
+			item.system.ductTaped === true &&
 			item.name.endsWith("(*Temporary)") && 
 			item.system.traits?.value?.includes("infused")
 		);
@@ -786,7 +787,7 @@ Hooks.on("ready", () => {
 			const createdItem = await selectedActor.createEmbeddedDocuments("Item", [modifiedItem]);
 			debugLog(`Created item with Quick Alchemy: `, createdItem);
 		}
-		return modifiedItem.system.slug;
+		return selectedItem?.slug;
 	}
 	
 	/*
@@ -1178,15 +1179,8 @@ Hooks.on("ready", () => {
 	*/
 	async function displayCraftingDialog(actor, itemType) {
 		
-		// Make Sure target is selected
-		const target = game.user.targets.size > 0 ? [...game.user.targets][0] : null;
-		if (!target) {
-			ui.notifications.error("Please target a token first.");
-			qaDialog(actor);
-			return;
-		}
-		
 		debugLog(`displayCraftingDialog() actor: ${actor.name} | itemType: ${itemType}`);
+		
 		// Check if actor has double brew feat
 		const doubleBrewFeat = hasFeat(actor,"double-brew");
 		debugLog(`doubleBrewFeat: ${doubleBrewFeat}`);
@@ -1202,6 +1196,15 @@ Hooks.on("ready", () => {
 		
 		// Check type of item 
 		if (itemType === 'vial') {
+			
+			// Make Sure target is selected
+			const target = game.user.targets.size > 0 ? [...game.user.targets][0] : null;
+			if (!target) {
+				ui.notifications.error("Please target a token first.");
+				qaDialog(actor);
+				return;
+			}
+			
 			
 			// Get uuid of Quick Vial item from module compendium
 			const compendium = game.packs.get("pf2e-alchemist-remaster-ducttape.alchemist-duct-tape-items");
@@ -1444,11 +1447,11 @@ Hooks.on("ready", () => {
 					tempWeapon.flags.pf2e.sourceWeapon = selectedWeapon.id;
 					
 					// Add custom module tags
-					modifiedItem.system.ductTaped = true; 
-					modifiedItem.system.publication.authors = "TheJoester";
-					modifiedItem.system.publication.license = "ORC";
-					modifiedItem.system.publication.title = "PF2e Alchemist Remaster Duct Tape module";
-					modifiedItem.system.publication.remaster = true;
+					tempWeapon.system.ductTaped = true; 
+					tempWeapon.system.publication.authors = "TheJoester";
+					tempWeapon.system.publication.license = "ORC";
+					tempWeapon.system.publication.title = "PF2e Alchemist Remaster Duct Tape module";
+					tempWeapon.system.publication.remaster = true;
 					
 					tempWeapon.system.traits?.value.push("infused", "poison", "injury");
 					tempWeapon.system.traits.value = tempWeapon.system.traits.value.filter(trait => trait !== "acid");
