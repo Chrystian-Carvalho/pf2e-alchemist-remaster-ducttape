@@ -1,11 +1,65 @@
 # Changelog
 
-## [2.5.14] - 
+## [2.6.12-test] - 2025-02-17
+## Added 
+- Added localization for the english language, so that others may contribute to localization efforts in other languanges. 
+
+## [2.6.11] - 2025-02-16
+### Fixed
+- **Quick Alchemy:** Fixed error in effect for resistance. 
+
+## [2.6.10] - 2025-02-16
+### Added
+- **Quick Alchemy:** Added support for Mutagenist Advanced Vials feature. 
+  - Field Benefit, Field Vials, Field Discovery, and Greater Field Discovery are all either handled by the system or not needing module support. 
+
+## [2.6.9] - 2025-02-11
+### Fixed
+- **Quick Alchemy:** fixed splash damage calculation in Quick Vials. 
+
+## [2.6.8] - 2025-02-07
+### Fixed
+- **Quick Alchemy:** quick vials were using rule elements from the base versatile vials, but was causing them to have +1 item bonus too high at all levels. 
+
+## [2.6.7] - 2025-02-01
+### Fixed
+- **Powerful Alchemy:** Fixed issue where it was updating Flat DC when it shouldn't. 
+- **Powerful Alchemy:** Fixed issue where certain items like Skunk Bomb pull description from the system item will display wrong DC when rolling damage. 
+
+## [2.6.6] - 2025-02-01 
+### Fixed 
+- **Quick Alchemy:** Fixed bug causing several chat messages to be sent at beginning/end of Alchemist's turn about removing temporary items.  
+### Added
+- **Settings:** Added option to disable chat message when temporary items are removed at start/end of Alchemist turn.
+
+## [2.6.5] - 2025-01-29
+### Fixed
+- **Level Up:** Fixed bug where when leveling up duplicate formulas could be added to actor crafting. 
+
+## [2.6.4] - 2025-01-28
+### Fixed
+- **Quick Alchemy:** Fixed bug where Toxicologist was not getting proficency on poisoned vials.
+- **Quick Alchemy:** Fixed splash damage for Toxicologist Quick Vial.
+
+## [2.6.3] - 2025-01-22
+### Fixed
+- **Quick Alchemy:** Changed how items are created as to not conflict with other modules. 
+  - Items created with macro will no longer have a unique temp slug, instead using a custom tag and publication information. 
+
+## [2.6.2] - 2025-01-22
+### Fixed
+- /templates directory was not included in .zip package. 
+
+## [2.6.0] - 2025-01-22
+### Added
+- **Quick Alchemy:** Added support for Toxicologist (Field Benefit, Field Vials, and Advanced Vials)!
+  - Quick Vial damage type defaults to poison. It will check for best damage type of target (poison or acid) based on resistances, immunities, and weaknesses. 
+  - When selecting "Quick Vial" it will prompt to craft Injury Poison, then apply and attack (3 actions).
+    - This prompts to select weapon/ammo to apply to, creates a temp copy with modified damage and damage types and deletes it after attack. 
+- **Level Up:** Added ability to add homebrew item compendiums in settings.
 ### Fixed
 - **Formula Search:** Fixed Formula Search bar not showing on Crafting tab due to change in character sheet html in pf2e Release v6.8.2.
-### Added
-- **Level Up:** Added ability to add homebrew item compendiums in settings. 
-
+- **Quick Alchemy:** Reworked flow for creating Quick Vial. 
 
 ## [2.5.13] - 2025-01-17
 ### Fixed
